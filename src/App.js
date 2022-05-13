@@ -1,18 +1,24 @@
 import './_App.scss';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './components/Header';
+import { createContext, useState } from 'react';
 // import MovieDetails from './pages/MovieDetails';
 
+export const SearchTermContext = createContext();
 const App = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/" element={<MovieDetails />}/> */}
-      </Routes>
-    </>
+    <SearchTermContext.Provider value={{ searchTerm, setSearchTerm }}>
+      <>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<MovieDetails />}/> */}
+        </Routes>
+      </>
+    </SearchTermContext.Provider>
   );
 }
 

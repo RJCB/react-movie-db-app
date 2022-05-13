@@ -1,8 +1,18 @@
 import React from "react";
+import Thumb from "./Thumb";
 
-const Grids = () => {
+const Grids = ({ heading = "What's Popular", items }) => {
+    const thumbElements = items?.map((item) => {
+        return <Thumb key={item.id} item={item} />
+    });
     return (
-        <div>Grids</div>
+        <div className="grid-section">
+            <h3>{heading}</h3>
+            {/* <h3>What's Popular</h3> */}
+            <div className="thumbs">
+                {thumbElements}
+            </div>
+        </div>
     )
 }
 
