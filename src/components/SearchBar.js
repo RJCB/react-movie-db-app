@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
-import { fetchByKeyword } from "../API";
+import React, { useContext } from "react";
 import { SearchTermContext } from "../App";
 import { keywordResultsContext } from "../pages/Home";
 
 const SearchBar = () => {
-    const { setSearchTerm } = useContext(SearchTermContext);
+    const { searchTerm, setSearchTerm } = useContext(SearchTermContext);
     const { handleInputSearch } = useContext(keywordResultsContext);
 
     const handleClick = () => {
@@ -19,7 +18,8 @@ const SearchBar = () => {
         <div className="searchbar">
             <input type="text" name="search" id="searchBar" placeholder="Search for a movie,tv show ..."
                 onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyDown={(e) => handleKeyDown(e)} />
+                onKeyDown={(e) => handleKeyDown(e)}
+                value={searchTerm} />
             <button onClick={handleClick}><span>Search</span></button>
         </div>
     )

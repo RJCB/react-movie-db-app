@@ -14,11 +14,12 @@ const Home = () => {
 	const [searchResults, setSearchResults] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [showTrending, setshowTrending] = useState(true);
+	const [filter, setFilter] = useState('ta');
 
 	useEffect(() => {
 		setLoading(true);
 		const trendingList = async () => {
-			let res = await fetchTrending('movie');
+			let res = await fetchTrending('all');
 			setTrending(res);
 			setLoading(false);
 		}
@@ -29,6 +30,8 @@ const Home = () => {
 		setSearchTerm('');
 		setLoading(true);
 		const mediaType = value.split('-')[1];
+		const filterVal = value.split('-')[0];
+		setFilter(filterVal);
 		const res = await fetchTrending(mediaType);
 		setTrending(res);
 		setshowTrending(true);
@@ -39,6 +42,8 @@ const Home = () => {
 		setSearchTerm('');
 		setLoading(true);
 		const mediaType = value.split('-')[1];
+		const filterVal = value.split('-')[0];
+		setFilter(filterVal);
 		const res = await fetchPopular(mediaType);
 		setPopular(res);
 		setshowTrending(false);
@@ -46,10 +51,15 @@ const Home = () => {
 	}
 
 	const handleInputSearch = async () => {
+		setFilter('');
 		setLoading(true);
 		const res = await fetchBySearch(searchTerm);
 		setSearchResults(res);
 		setLoading(false);
+	}
+
+	const setBtnActive = (e) => {
+		return e === filter;
 	}
 
 	return (
@@ -58,11 +68,11 @@ const Home = () => {
 			{/* {searchTerm ? <Grids heading="Search results"/> :
 				<> */}
 			<div>
-				<button value="trending-all" onClick={(e) => handleTrending(e.target.value)}>All Trending</button>
-				<button value="trending-movie" onClick={(e) => handleTrending(e.target.value)}>Trending movies</button>
-				<button value="trending-tv" onClick={(e) => handleTrending(e.target.value)}>Trending Tv</button>
-				<button value="Popular-movie" onClick={(e) => handlePopular(e.target.value)}>Popular movies</button>
-				<button value="Popular-tv" onClick={(e) => handlePopular(e.target.value)}>Popular Tv</button>
+				<button value="ta-all" className={setBtnActive('ta') ? 'active' : ''} onClick={(e) => handleTrending(e.target.value)}>All Trending</button>
+				<button value="tm-movie" className={setBtnActive('tm') ? 'active' : ''} onClick={(e) => handleTrending(e.target.value)}>Trending movies</button>
+				<button value="ttv-tv" className={setBtnActive('ttv') ? 'active' : ''} onClick={(e) => handleTrending(e.target.value)}>Trending Tv</button>
+				<button value="pm-movie" className={setBtnActive('pm') ? 'active' : ''} onClick={(e) => handlePopular(e.target.value)}>Popular movies</button>
+				<button value="ptv-tv" className={setBtnActive('ptv') ? 'active' : ''} onClick={(e) => handlePopular(e.target.value)}>Popular Tv</button>
 			</div>
 			{(searchResults.length > 0 && !loading) ? <Grids items={searchResults} /> : <Spinner />}
 			{/* {showTrending ?
