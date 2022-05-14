@@ -104,6 +104,46 @@ header {
 		}
 	}
 
+	&_filter-btns {
+		margin-left: 8vw;
+		margin-top: 20px;
+
+		button {
+			border: 1px solid #01b4e4;
+			background: transparent;
+			padding: 4px 6px;
+			border-radius: 13px;
+			font-size: 13px;
+			color: #203E56;
+			cursor: pointer;
+			font-weight: 600;
+
+			&:not(:first-child) {
+				margin-left: 20px;
+			}
+
+			&.active {
+				background: linear-gradient(to right, rgb(192, 254, 207) 0%, rgb(1, 180, 228) 100%);
+				cursor: auto;
+			}
+
+			&:hover {
+				background-color: #01b4e4;
+				// animation: backgroundAnimation 1s ease-in;
+			}
+
+			@keyframes backgroundAnimation {
+				from {
+					background-color: #c0fecf;
+				}
+
+				to {
+					background-color: #01b4e4;
+				}
+			}
+		}
+	}
+
 	.grid-section {
 		padding: 20px 8vw;
 
@@ -162,6 +202,35 @@ header {
 	}
 }
 
+.details {
+	.heroimage {
+		height: 65vh;
+
+		&_customBg {
+			background: linear-gradient(to right, rgb(81 81 81) 150px, rgb(89 89 92 / 60%) 100%);
+			height: inherit;
+		}
+	}
+
+	&_card {
+		width: 90vw;
+		height: 65vh;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+
+		&-left {}
+
+		&-image {
+			border-radius: 10px;
+			height: 400px;
+		}
+
+		// &-right {
+		// }
+	}
+}
+
 @media only screen and (max-width:1024px) {
 	.homepage {
 		.hero {
@@ -174,8 +243,4 @@ header {
 			}
 		}
 	}
-}
-
-.active {
-	background-color: red;
 }

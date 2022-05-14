@@ -3,8 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './components/Header';
 import { createContext, useState } from 'react';
-// import MovieDetails from './pages/MovieDetails';
-
+import MovieDetails from './pages/MovieDetails';
 export const SearchTermContext = createContext();
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,7 +14,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/" element={<MovieDetails />}/> */}
+          <Route path="details/:mediaType/:movieId" element={<MovieDetails />} />
         </Routes>
       </>
     </SearchTermContext.Provider>

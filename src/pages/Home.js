@@ -9,18 +9,18 @@ export const keywordResultsContext = createContext();
 
 const Home = () => {
 	const { searchTerm, setSearchTerm } = useContext(SearchTermContext);
-	const [trending, setTrending] = useState([]);
-	const [popular, setPopular] = useState([]);
+	const [trending, setTrendingResults] = useState([]);
+	const [popular, setPopularResults] = useState([]);
 	const [searchResults, setSearchResults] = useState([]);
 	const [loading, setLoading] = useState(false);
-	const [showTrending, setshowTrending] = useState(true);
+	const [showTrending, setShowTrending] = useState(true);
 	const [filter, setFilter] = useState('ta');
 
 	useEffect(() => {
 		setLoading(true);
 		const trendingList = async () => {
 			let res = await fetchTrending('all');
-			setTrending(res);
+			setTrendingResults(res);
 			setLoading(false);
 		}
 		trendingList();
@@ -28,25 +28,27 @@ const Home = () => {
 
 	const handleTrending = async (value) => {
 		setSearchTerm('');
+		if (searchResults) setSearchResults([]);
 		setLoading(true);
 		const mediaType = value.split('-')[1];
 		const filterVal = value.split('-')[0];
 		setFilter(filterVal);
 		const res = await fetchTrending(mediaType);
-		setTrending(res);
-		setshowTrending(true);
+		setTrendingResults(res);
+		setShowTrending(true);
 		setLoading(false);
 	}
 
 	const handlePopular = async (value) => {
 		setSearchTerm('');
+		if (searchResults) setSearchResults([]);
 		setLoading(true);
 		const mediaType = value.split('-')[1];
 		const filterVal = value.split('-')[0];
 		setFilter(filterVal);
 		const res = await fetchPopular(mediaType);
-		setPopular(res);
-		setshowTrending(false);
+		setPopularResults(res);
+		setShowTrending(false);
 		setLoading(false);
 	}
 
@@ -62,23 +64,28 @@ const Home = () => {
 		return e === filter;
 	}
 
+	const renderResults = () => {
+		if (searchResults.length > 0) {
+			return <Grids items={searchResults} />
+		} else if (trending.length > 0 && showTrending) {
+			return <Grids items={trending} heading={"What's Trending"} />
+		} else if (popular.length > 0) {
+			return <Grids items={popular} heading={"What's Popular"} />
+		}
+	}
+
 	return (
 		<div className="homepage">
 			<keywordResultsContext.Provider value={{ handleInputSearch: handleInputSearch }}><Hero /></keywordResultsContext.Provider>
-			{/* {searchTerm ? <Grids heading="Search results"/> :
-				<> */}
-			<div>
+			<div className="homepage_filter-btns">
 				<button value="ta-all" className={setBtnActive('ta') ? 'active' : ''} onClick={(e) => handleTrending(e.target.value)}>All Trending</button>
-				<button value="tm-movie" className={setBtnActive('tm') ? 'active' : ''} onClick={(e) => handleTrending(e.target.value)}>Trending movies</button>
-				<button value="ttv-tv" className={setBtnActive('ttv') ? 'active' : ''} onClick={(e) => handleTrending(e.target.value)}>Trending Tv</button>
-				<button value="pm-movie" className={setBtnActive('pm') ? 'active' : ''} onClick={(e) => handlePopular(e.target.value)}>Popular movies</button>
-				<button value="ptv-tv" className={setBtnActive('ptv') ? 'active' : ''} onClick={(e) => handlePopular(e.target.value)}>Popular Tv</button>
+				<button value="tm-movie" className={setBtnActive('tm') ? 'active' : ''} onClick={(e) => handleTrending(e.target.value)}>Trending Movies</button>
+				<button value="ttv-tv" className={setBtnActive('ttv') ? 'active' : ''} onClick={(e) => handleTrending(e.target.value)}>Trending TV</button>
+				<button value="pm-movie" className={setBtnActive('pm') ? 'active' : ''} onClick={(e) => handlePopular(e.target.value)}>Popular Movies</button>
+				<button value="ptv-tv" className={setBtnActive('ptv') ? 'active' : ''} onClick={(e) => handlePopular(e.target.value)}>Popular TV</button>
 			</div>
-			{(searchResults.length > 0 && !loading) ? <Grids items={searchResults} /> : <Spinner />}
-			{/* {showTrending ?
-				<>{(trending.length > 0 && !loading) ? <Grids items={trending} /> : <Spinner />}</> :
-				<>{(popular.length > 0 && !loading) ? <Grids items={popular} /> : <Spinner />}</>
-			} */}
+			{loading && <Spinner />}
+			{!loading && renderResults()}
 		</div>
 	)
 }

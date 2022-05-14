@@ -1,7 +1,7 @@
 import React from "react";
 import Thumb from "./Thumb";
 
-const Grids = ({ heading = "What's Popular", items }) => {
+const Grids = ({ heading, items }) => {
     const thumbElements = items?.map((item) => {
         return <Thumb key={item.id} item={item} />
     });
