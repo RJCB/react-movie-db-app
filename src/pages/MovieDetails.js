@@ -43,7 +43,7 @@ const MovieDetails = () => {
 		const element = movieCredits.cast?.map(cast => {
 			return <CrewThumb key={id} character={cast.character} name={cast.name || cast.original_name} img={cast.profile_path} />;
 		})
-		return element;
+		return element.length > 0 ? element : <p>No cast to show</p>;
 	}
 	return (
 		<div className="details">
