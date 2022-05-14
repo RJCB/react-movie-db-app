@@ -89,6 +89,4 @@ const Home = () => {
 		</div>
 	)
 }
-//idea is we render grids for popular and trending movies/tvshows by maintaining the state here. We add a state variable whenever searchTerm(mayebe context) is available we set it to true and hide the popular and trending, when its false we just the results.
-//for trending implement a toggle button, movies and tv, same state
 export default Home
