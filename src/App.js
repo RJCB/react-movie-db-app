@@ -14,7 +14,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="details/:mediaType/:movieId" element={<MovieDetails />} />
+          <Route path="details/:mediaType/:mediaId" element={<MovieDetails />} />
         </Routes>
       </>
     </SearchTermContext.Provider>

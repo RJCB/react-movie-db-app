@@ -1,4 +1,3 @@
-// https://api.themoviedb.org/3/movie/550?api_key=9f98ce0255e30b167db097f683d36b39
 import axios from "axios";
 import { BASE_URL } from "../constants";
 
@@ -57,6 +56,21 @@ export const fetchById = async (media_type, id) => {
         try {
             const response = await axios.get(`${BASE_URL}${media_type}/${id}?api_key=${API_KEY}`);
             sessionStorage.setItem(`${id}`, JSON.stringify(response.data));
+            return response.data
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export const fetchCredits = async (media_type, id) => {
+    if (sessionStorage.getItem(`credits-${id}`)) {
+        return await JSON.parse(sessionStorage.getItem(`credits-${id}`));
+    }
+    else {
+        try {
+            const response = await axios.get(`${BASE_URL}${media_type}/${id}/credits?api_key=${API_KEY}`);
+            sessionStorage.setItem(`credits-${id}`, JSON.stringify(response.data));
             return response.data
         } catch (error) {
             console.log(error);
