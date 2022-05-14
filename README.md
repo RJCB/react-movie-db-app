@@ -1,10 +1,11 @@
-# The movie database app built using React JS
+# The movie database app built using React JS (used context api where needed)
 
 App is live at https://rjcb.github.io/react-movie-db/
 
 - This app lets user search for a movie, tv show and view their details including crew, cast, runtime, release date etc. Alternatively, user can also select between trending and popular movies and tv using the buttons on homepage.
 - User can also login to their `TMDB account` and any changes made through this app will be reflected in their actual TMDB account as well.
 - I have built similar app using styled components however, the number of search features on that app are limited.
+- This app is not responsive at the moment, it's is a Todo
 
 Flows:
 - Homepage that shows a trending list by default
@@ -22,6 +23,7 @@ Todo:
 - Add favourite, add to watchlist, rate features
 - Add proper error handling
 - We can Logout a user by deleting the session_id, however the api call to delete is returning 404. Need to look into it.
+- Add breakpoints for Responsiveness/make app responsive
 
 
 ![Screen Shot 2022-05-14 at 12 58 15 PM](https://user-images.githubusercontent.com/37097058/168451640-46cee193-37e2-4e30-a15b-813d86178774.png)
