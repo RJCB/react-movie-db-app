@@ -37,7 +37,7 @@ const MovieDetails = () => {
 		const element = movieCredits.crew?.filter(credit => (credit.job === 'Director')).map(director => {
 			return <CrewThumb key={director.id} job={director.job} name={director.name || director.original_name} img={director.profile_path} />;
 		})
-		return element;
+		return element.length > 0 ? element : <p>No crew to show</p>;
 	}
 
 	const getActors = () => {

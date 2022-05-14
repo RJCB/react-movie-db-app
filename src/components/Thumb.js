@@ -6,10 +6,11 @@ import noImage from "../images/no_image.jpeg";
 
 const Thumb = ({ item }) => {
     const { id, title, media_type, original_name, vote_average, release_date, poster_path, first_air_date } = item || {};
-    const { searchTerm } = useContext(SearchTermContext);
+    const { searchTerm, setSearchTerm } = useContext(SearchTermContext);
     const history = useNavigate();
 
     const handleThumbClick = () => {
+        setSearchTerm('');
         history(`details/${media_type}/${id}`);
     }
 

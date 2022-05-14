@@ -6,7 +6,8 @@ header {
 	justify-content: space-between;
 	padding: 0 40px;
 
-	a {
+	a,
+	button {
 		font-weight: 500;
 		letter-spacing: 0.5px;
 	}
@@ -23,7 +24,8 @@ header {
 		nav {
 			margin-left: 25px;
 
-			a {
+			a,
+			button {
 				margin-right: 20px;
 
 				&:first-child {
@@ -37,17 +39,23 @@ header {
 		}
 	}
 
-	a {
+	a,
+	button {
 		text-decoration: none;
 		color: #fff;
 		font-size: 18px;
+		background-color: transparent;
+	}
+
+	button {
+		border: none;
 	}
 }
 
 .homepage {
 	.hero {
 		height: 38vh;
-		background-color: #000;
+		background-image: url('https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/bgQUBbZ14hfeb975yZ2YzTnAwen.jpg');
 
 		.hero-content {
 			padding: 90px 8vw 0;
@@ -129,17 +137,6 @@ header {
 
 			&:hover {
 				background-color: #01b4e4;
-				// animation: backgroundAnimation 1s ease-in;
-			}
-
-			@keyframes backgroundAnimation {
-				from {
-					background-color: #c0fecf;
-				}
-
-				to {
-					background-color: #01b4e4;
-				}
 			}
 		}
 	}
@@ -205,6 +202,7 @@ header {
 .details {
 	.heroimage {
 		height: 65vh;
+		background-size: cover;
 
 		&_customBg {
 			background: linear-gradient(to right, rgb(81 81 81) 150px, rgb(89 89 92 / 60%) 100%);
@@ -346,6 +344,61 @@ header {
 		border-radius: 20px;
 		width: 75px;
 		background-color: #203E56;
+	}
+}
+
+// spinner
+.spinner {
+	margin: 20px auto;
+	border: 8px solid transparent;
+	border-top: 8px solid #203E56;
+	border-radius: 50%;
+	width: 80px;
+	height: 80px;
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.login-page {
+	text-align: center;
+	color: #203E56;
+	margin-top: 80px;
+
+	h1 {
+		font-size: 2.5rem;
+		color: #203E56;
+		margin-bottom: 20px;
+	}
+
+	label {
+		font-size: 16px;
+		width: 100px;
+	}
+
+	input {
+		width: 170px;
+		margin-left: 20px;
+		margin-bottom: 20px;
+		height: 30px;
+	}
+
+	button {
+		margin-top: 20px;
+		border: none;
+		padding: 10px 20px;
+		background-color: #203E56;
+		color: #fff;
+		cursor: pointer;
+		font-weight: 600;
 	}
 }
 
