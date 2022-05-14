@@ -100,6 +100,12 @@ export const deleteSession = async (sessionId) => {
     });
 }
 
+//account_id and session_id are need for rating, set as favourite, add to watchlist. So it can be fetched in the following call (returned id is the account id)
+//get account details: https://developers.themoviedb.org/3/account/get-account-details
+
+
+
+
 // const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/';
 // // Sizes: w300, w780, w1280, original
 // // w92, w154, w185, w342, w500, w780, original

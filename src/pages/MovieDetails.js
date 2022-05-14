@@ -18,7 +18,7 @@ const MovieDetails = () => {
 		overview,
 		first_air_date, release_date,
 		runtime, tagline,
-		vote_average, vote_count, genres } = movieDetails;
+		vote_average, genres } = movieDetails;
 
 	useEffect(() => {
 		setLoading(true);
@@ -27,7 +27,6 @@ const MovieDetails = () => {
 			const creditsRes = await fetchCredits(mediaType, mediaId);
 			setMovieDetails(res);
 			setMovieCredits(creditsRes);
-			console.log(creditsRes)
 			setLoading(false);
 		}
 		fetchMovieDetails();

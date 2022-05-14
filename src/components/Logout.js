@@ -8,7 +8,7 @@ const Logout = () => {
         const logout = async () => {
             try {
                 const res = await deleteSession(user.sessionId);
-                console.log(res);
+                //deleting session_id api call is returning 404, look into it and update code here as needed.
             } catch (error) {
                 console.log(error);
             }
