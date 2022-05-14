@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { userContext } from "../App";
 
 const Header = () => {
+    const { user } = useContext(userContext);
     return (
         <>
             <header>
@@ -13,7 +15,11 @@ const Header = () => {
                     </nav>
                 </div>
                 <div className="nav-login">
-                    <Link to="/login">Login</Link>
+                    {!user && <Link to="/login">Login</Link>}
+                    {/* {!user ?
+                        <Link to="/login">Login</Link> :
+                        <Link to="/logout">Logout</Link>
+                    } */}
                 </div>
             </header>
         </>
