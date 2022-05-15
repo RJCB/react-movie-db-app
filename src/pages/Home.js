@@ -15,6 +15,7 @@ const Home = () => {
 	const [loading, setLoading] = useState(false);
 	const [showTrending, setShowTrending] = useState(true);
 	const [filter, setFilter] = useState('ta');
+	const [popularMediaType, setPopularMediaType] = useState('');//api doesn't return media type for Popular based search results
 
 	useEffect(() => {
 		setLoading(true);
@@ -45,6 +46,7 @@ const Home = () => {
 		setLoading(true);
 		const mediaType = value.split('-')[1];
 		const filterVal = value.split('-')[0];
+		setPopularMediaType(mediaType);
 		setFilter(filterVal);
 		const res = await fetchPopular(mediaType);
 		setPopularResults(res);
@@ -70,7 +72,7 @@ const Home = () => {
 		} else if (trending.length > 0 && showTrending) {
 			return <Grids items={trending} heading={"What's Trending"} />
 		} else if (popular.length > 0) {
-			return <Grids items={popular} heading={"What's Popular"} />
+			return <Grids items={popular} mediaType={popularMediaType} heading={"What's Popular"} />
 		}
 	}
 
