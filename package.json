@@ -2,7 +2,7 @@
   "name": "react-movie-database-tmdb",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://rjcb.github.io/react-movie-database-tmdb",
+  "homepage": "http://rjcb.github.io/react-movie-db-app/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
