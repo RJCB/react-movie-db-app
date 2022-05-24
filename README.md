@@ -1,6 +1,6 @@
 # Responsive `The movie database app` built using React JS (used context api where needed)
 
-App is live at https://rjcb.github.io/react-movie-db/
+App is live at https://rjcb.github.io/react-movie-db-app/
 
 - This app lets user search for a movie, tv show and view their details including crew, cast, runtime, release date etc. Alternatively, user can also select between trending and popular movies and tv using the buttons on homepage.
 - User can also login to their `TMDB account` and any changes made through this app will be reflected in their actual TMDB account as well.
